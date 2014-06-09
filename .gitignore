@@ -1,2 +1,8 @@
 .gradle
 build/
+classes/
+*.iml
+gradle/
+gradlew
+gradle.bat
+gradlew.bat
