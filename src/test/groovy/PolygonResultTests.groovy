@@ -14,7 +14,7 @@ class PolygonResultTests extends spock.lang.Specification{
     when: "set the value of the vertice on the result"
     result.numberOfVertices = 3
 
-    then: "the value of the numberOfVertices to be set"
+    then: "the value of the numberOfVertices should be set"
     3 == result.numberOfVertices
   }
 
@@ -22,7 +22,7 @@ class PolygonResultTests extends spock.lang.Specification{
     given: "a new PolygonResult class"
     def result = new PolygonResult(numberOfVertices: 3)
 
-    expect: "the value of the numberOfVertices to be set"
+    expect: "the value of the numberOfVertices should be set"
     3 == result.numberOfVertices
   }
 
@@ -33,7 +33,7 @@ class PolygonResultTests extends spock.lang.Specification{
     when: "set the value of the perimeter on the result"
     result.perimeter = 3.0d
 
-    then: "the value of the perimeter to be set"
+    then: "the value of the perimeter should be set"
     3.0d == result.perimeter
   }
 
@@ -41,8 +41,27 @@ class PolygonResultTests extends spock.lang.Specification{
     given: "a new PolygonResult class"
     def result = new PolygonResult(perimeter: 3.0d)
 
-    expect: "the value of the perimeter to be set"
+    expect: "the value of the perimeter should be set"
     3.0d == result.perimeter
+  }
+
+  def "should be able to set area of the polygon on the polygon result"() {
+    given: "a new PolygonResult class"
+    def result = new PolygonResult()
+
+    when: "set the area of the polygon on the result"
+    result.area = 12.0d
+
+    then: "the value of the area should be set"
+    12.0d == result.area
+  }
+
+  def "should be able to set area on the PolygonResult via the constructor"() {
+    given: "a new PolygonResult class"
+    def result = new PolygonResult(area: 12.0d)
+
+    expect: "the value of area should be"
+    12.0d == result.area
   }
 }
 
