@@ -1,4 +1,4 @@
-class ConstantsTest extends spock.lang.Specification{
+class ConstantsTests extends spock.lang.Specification{
   def "the constant value for WGS84_a should be returned properly"() {
 
     expect: "the proper value for WGS84_a should be returned"
