@@ -6,3 +6,7 @@ gradle/
 gradlew
 gradle.bat
 gradlew.bat
+.idea
+*.ipr
+*.iws
+out/
