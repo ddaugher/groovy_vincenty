@@ -25,5 +25,24 @@ class PolygonResultTests extends spock.lang.Specification{
     expect: "the value of the numberOfVertices to be set"
     3 == result.numberOfVertices
   }
+
+  def "should be able to set perimeter on the PolygonResult"() {
+    given: "a new PolygonResult class"
+    def result = new PolygonResult()
+
+    when: "set the value of the perimeter on the result"
+    result.perimeter = 3.0d
+
+    then: "the value of the perimeter to be set"
+    3.0d == result.perimeter
+  }
+
+  def "should be able to set perimeter value on the PolygonResult via the constructor"() {
+    given: "a new PolygonResult class"
+    def result = new PolygonResult(perimeter: 3.0d)
+
+    expect: "the value of the perimeter to be set"
+    3.0d == result.perimeter
+  }
 }
 
