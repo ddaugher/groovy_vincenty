@@ -122,30 +122,25 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     eiffelTower.getLongitude().round(8) == dest.getLongitude().round(8)
   }
 
-//   public void testPoleCrossing()
-//   {
-//     // instantiate the calculator
-//     GeodeticCalculator geoCalc = new GeodeticCalculator();
-//
-//     // select a reference elllipsoid
-//     Ellipsoid reference = Ellipsoid.WGS84;
-//
-//     // set Lincoln Memorial coordinates
-//     GlobalCoordinates lincolnMemorial;
-//     lincolnMemorial = new GlobalCoordinates(38.88922, -77.04978);
-//
-//     // set a bearing of 1.0deg (almost straight up) and a distance
-//     double startBearing = 1.0;
-//     double distance = 6179016.13586;
-//
-//     // set the expected destination
-//     GlobalCoordinates expected;
-//     expected = new GlobalCoordinates(85.60006433, 92.17243943);
-//
-//     // calculate the ending global coordinates
-//     GlobalCoordinates dest = geoCalc.calculateEndingGlobalCoordinates(reference, lincolnMemorial, startBearing, distance );
-//
-//     assertEquals(expected.getLatitude(), dest.getLatitude(), 0.0000001);
-//     assertEquals(expected.getLongitude(), dest.getLongitude(), 0.0000001);
-//   }
+  def "test pole crossing"() {
+    given: "a valid geodetic calculator"
+    def geocalc = new GeodeticCalculator()
+
+    when: "set Lincoln Memorial coordinates"
+    GlobalCoordinates lincolnMemorial = new GlobalCoordinates(38.88922, -77.04978);
+
+    and: "create the expected destination"
+    GlobalCoordinates expected = new GlobalCoordinates(85.60006433, 92.17243943);
+
+    and: "calculate the ending global coordinates"
+    double startBearing = 1.0;
+    double distance = 6179016.13586;
+    GlobalCoordinates dest = geocalc.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, lincolnMemorial, startBearing, distance);
+
+    then: "the destination latitude will be"
+    dest.getLatitude().round(8) == expected.getLatitude().round(8)
+
+    then: "the destination longitude will be"
+    dest.getLongitude().round(8) == expected.getLongitude().round(8)
+  }
 }
