@@ -75,31 +75,28 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     270.0004877491174 == geoCurve.getReverseAzimuth().round(13)
   }
 
-//   public void testAntiPodal2()
-//   {
-//      // instantiate the calculator
-//      GeodeticCalculator geoCalc = new GeodeticCalculator();
-//
-//      // select a reference elllipsoid
-//      Ellipsoid reference = Ellipsoid.WGS84;
-//
-//      // set position 1
-//      GlobalCoordinates p1;
-//      p1 = new GlobalCoordinates(11, 80);
-//
-//      // set position 2
-//      GlobalCoordinates p2;
-//      p2 = new GlobalCoordinates(-10, -100);
-//
-//      // calculate the geodetic measurement
-//      GeodeticCurve geoCurve;
-//
-//      geoCurve = geoCalc.calculateGeodeticCurve(reference, p1, p2);
-//
-//      assertEquals( 19893320.272061437, geoCurve.getEllipsoidalDistance(), 0.001);
-//      assertEquals(360.0, geoCurve.getAzimuth(), 0.0000001);
-//      assertEquals(0.0, geoCurve.getReverseAzimuth(), 0.0000001);
-//   }
+  def "test anti podal 2"() {
+    given: "a valid geodetic calculator"
+    def geocalc = new GeodeticCalculator()
+
+    and: "set global coordinate position 1"
+    GlobalCoordinates p1 = new GlobalCoordinates(11, 80);
+
+    and: "set global coordinate position 2"
+    GlobalCoordinates p2 = new GlobalCoordinates(-10, -100);
+
+    when: "calculate the geodetic measurement"
+    GeodeticCurve geoCurve = geocalc.calculateGeodeticCurve(Ellipsoid.WGS84, p1, p2);
+
+    then: "the ellipsoidal distance should be correct"
+    19893320.272061437 == geoCurve.getEllipsoidalDistance().round(9)
+
+    then: "the asimuth value should be correct"
+    360.0 == geoCurve.getAzimuth().round(0)
+
+    then: "the reverse asimuth should be correct"
+    0.0 == geoCurve.getReverseAzimuth().round(0)
+  }
 //
 //   public void testInverseWithDirect()
 //   {
