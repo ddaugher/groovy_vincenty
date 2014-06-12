@@ -97,36 +97,31 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     then: "the reverse asimuth should be correct"
     0.0 == geoCurve.getReverseAzimuth().round(0)
   }
-//
-//   public void testInverseWithDirect()
-//   {
-//      // instantiate the calculator
-//      GeodeticCalculator geoCalc = new GeodeticCalculator();
-//
-//      // select a reference elllipsoid
-//      Ellipsoid reference = Ellipsoid.WGS84;
-//
-//      // set Lincoln Memorial coordinates
-//      GlobalCoordinates lincolnMemorial;
-//      lincolnMemorial = new GlobalCoordinates(38.88922, -77.04978);
-//
-//      // set Eiffel Tower coordinates
-//      GlobalCoordinates eiffelTower;
-//      eiffelTower = new GlobalCoordinates(48.85889, 2.29583);
-//
-//      // calculate the geodetic curve
-//      GeodeticCurve geoCurve = geoCalc.calculateGeodeticCurve(reference, lincolnMemorial, eiffelTower);
-//
-//      // now, plug the result into to direct solution
-//      GlobalCoordinates dest;
-//      double[] endBearing = new double[1];
-//
-//      dest = geoCalc.calculateEndingGlobalCoordinates(reference, lincolnMemorial, geoCurve.getAzimuth(), geoCurve.getEllipsoidalDistance(), endBearing);
-//
-//      assertEquals( eiffelTower.getLatitude(), dest.getLatitude(), 0.0000001 );
-//      assertEquals( eiffelTower.getLongitude(), dest.getLongitude(), 0.0000001 );
-//   }
-//
+
+  def "test inverse with direct"() {
+    given: "a valid geodetic calculator"
+    def geocalc = new GeodeticCalculator()
+
+    and: "set Lincoln Memorial coordinates"
+    GlobalCoordinates lincolnMemorial = new GlobalCoordinates(38.88922, -77.04978);
+
+    and: "set Eiffel Tower coordinates"
+    GlobalCoordinates eiffelTower = new GlobalCoordinates(48.85889, 2.29583);
+
+    when: "calculate the geodetic measurement"
+    GeodeticCurve geoCurve = geocalc.calculateGeodeticCurve(Ellipsoid.WGS84, lincolnMemorial, eiffelTower);
+
+    and: "plug the result into the direct solution"
+    double[] endBearing = new double[1];
+    GlobalCoordinates dest = geocalc.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, lincolnMemorial, geoCurve.getAzimuth(), geoCurve.getEllipsoidalDistance(), endBearing);
+
+    then: "the destination latitude will be"
+    eiffelTower.getLatitude().round(8) == dest.getLatitude().round(8)
+
+    then: "the destination longitude will be"
+    eiffelTower.getLongitude().round(8) == dest.getLongitude().round(8)
+  }
+
 //   public void testPoleCrossing()
 //   {
 //     // instantiate the calculator
