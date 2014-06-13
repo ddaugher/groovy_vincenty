@@ -1,31 +1,11 @@
-/* Geodesy by Mike Gavaghan
- * 
- * http://www.gavaghan.org/blog/free-source-code/geodesy-library-vincentys-formula/
- * 
- * This code may be freely used and modified on any personal or professional
- * project.  It comes with no warranty.
- *
- * BitCoin tips graciously accepted at 1FB63FYQMy7hpC2ANVhZ5mSgAZEtY1aVLf
- */
 package com.studio945.geodesy;
 
-/**
- * Utility methods for dealing with angles.
- *  
- * @author Mike Gavaghan
- */
-public class Angle
+@Singleton
+class Angle
 {
    /** Degrees/Radians conversion constant. */
    static private final double PiOver180 = Math.PI / 180.0;
    
-   /**
-    * Disallow instantiation.
-    */
-   private Angle()
-   {
-   }
-
    /**
     * Convert degrees to radians.
     * @param degrees
