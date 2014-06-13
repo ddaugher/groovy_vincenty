@@ -3,26 +3,15 @@ package com.studio945.geodesy;
 @Singleton
 class Angle
 {
-   /** Degrees/Radians conversion constant. */
-   static private final double PiOver180 = Math.PI / 180.0;
+   def static final double piOver180 = Math.PI / 180.0;
    
-   /**
-    * Convert degrees to radians.
-    * @param degrees
-    * @return
-    */
-   static public double toRadians( double degrees )
+   def static double toRadians( double degrees )
    {
-      return degrees * PiOver180;
+      return degrees * piOver180
    }
    
-   /**
-    * Convert radians to degrees.
-    * @param radians
-    * @return
-    */
-   static public double toDegrees( double radians )
+   def static double toDegrees( double radians )
    {
-      return radians / PiOver180;
+      return radians / piOver180
    }
 }
