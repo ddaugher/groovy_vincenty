@@ -19,4 +19,9 @@ public class AngleTests extends spock.lang.Specification {
     expect: "proper degrees are returned"
     57.295779513082 == Angle.instance.toDegrees(1).round(12)
   }
+
+  def "conversion constant should be returned properly"() {
+    expect: "proper value returned"
+    0.017453292519943295 == Angle.piOver180
+  }
 }
