@@ -61,12 +61,6 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
       mLongitude -= 180;
    }
 
-   /**
-    * Construct a new GlobalCoordinates. Angles will be canonicalized.
-    * 
-    * @param latitude latitude in degrees
-    * @param longitude longitude in degrees
-    */
    public GlobalCoordinates(double latitude, double longitude)
    {
       mLatitude = latitude;
@@ -74,14 +68,9 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
       canonicalize();
    }
 
-   /**
-    * Get latitude.
-    * 
-    * @return latitude in degrees
-    */
    public double getLatitude()
    {
-      return mLatitude;
+      mLatitude
    }
 
    /**

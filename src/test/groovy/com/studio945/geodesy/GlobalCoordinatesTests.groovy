@@ -38,21 +38,27 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     0.0d == equator.latitude
   }
 
-  def "not sure"() {
+  def "when creating GlobalCoordinates, latitude and longitude will be normalized"() {
     when: "instantiate a new instance"
-    def e = new GlobalCoordinates(-90.000000009d, 0.0d)
+    def lat = -90.000000009d
+    def longitude = 0.0d
+    def e = new GlobalCoordinates(lat, longitude)
 
     then: "should return proper latitude and longitude"
-    180.0d == e.longitude
     -89.999999991d == e.latitude
+    180.0d == e.longitude
   }
 
-//  public void testConstructor() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-90.000000009, 0.0);
-//    assertEquals("globalCoordinates.getLongitude()", 180.0, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -89.999999991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
+  def "two"() {
+    when: "instantiate a new instance"
+    def lat = 90.0d
+    def longitude = -180.001d
+    def e = new GlobalCoordinates(lat, longitude)
+
+    then: "should return proper latitude and longitude"
+    90.0d == e.latitude
+    179.99900000000002 == e.longitude
+  }
 //  public void testConstructor1() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(90.0, -180.001);
 //    assertEquals("globalCoordinates.getLongitude()", 179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
