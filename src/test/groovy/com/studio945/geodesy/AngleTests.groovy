@@ -34,16 +34,4 @@ public class AngleTests extends spock.lang.Specification {
     expect: "proper value returned"
     0.017453292519943295 == Angle.piOver180
   }
-
-
-//  public void testToRadians() throws Throwable {
-//    double result = Angle.toRadians(100.0);
-//    assertEquals("result", 1.7453292519943295, result, 1.0E-6);
-//  }
-//
-//  public void testToRadians1() throws Throwable {
-//    double result = Angle.toRadians(0.0);
-//    assertEquals("result", 0.0, result, 1.0E-6);
-//  }
-
 }
