@@ -19,4 +19,13 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     10.0d == southPole.longitude
     90.0d == southPole.latitude
   }
+
+  def "should create proper GlobalCoordinates for Equator Greenwich"() {
+    when: "instantiate a new instance"
+    def equator = GlobalCoordinates.createEquatorGreenwich()
+
+    then: "should return proper Equator Greenwich Global Coordinates"
+    0.0d == equator.longitude
+    0.0d == equator.latitude
+  }
 }
