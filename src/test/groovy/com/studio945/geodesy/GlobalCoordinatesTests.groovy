@@ -28,4 +28,13 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     0.0d == equator.longitude
     0.0d == equator.latitude
   }
+
+  def "should create proper GlobalCoordinates for Equator IDL"() {
+    when: "instantiate a new instance"
+    def equator = GlobalCoordinates.createEquatorIDL()
+
+    then: "should return proper Equator IDL Global Coordinates"
+    180.0d == equator.longitude
+    0.0d == equator.latitude
+  }
 }
