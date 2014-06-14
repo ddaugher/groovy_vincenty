@@ -1,12 +1,3 @@
-/* Geodesy by Mike Gavaghan
- * 
- * http://www.gavaghan.org/blog/free-source-code/geodesy-library-vincentys-formula/
- * 
- * This code may be freely used and modified on any personal or professional
- * project.  It comes with no warranty.
- *
- * BitCoin tips graciously accepted at 1FB63FYQMy7hpC2ANVhZ5mSgAZEtY1aVLf
- */
 package com.studio945.geodesy
 /**
  * <p>
@@ -39,7 +30,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
     * -90 &lt;= latitude &lt;= +90 - 180 &lt; longitude &lt;= +180
     * </pre>
     */
-   private void canonicalize()
+   private void normalize()
    {
       mLatitude = (mLatitude + 180) % 360;
       if (mLatitude < 0) mLatitude += 360;
@@ -65,7 +56,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
    {
       mLatitude = latitude;
       mLongitude = longitude;
-      canonicalize();
+      normalize();
    }
 
    public double getLatitude()
@@ -82,7 +73,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
    public void setLatitude(double latitude)
    {
       mLatitude = latitude;
-      canonicalize();
+      normalize();
    }
 
    /**
@@ -104,7 +95,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
    public void setLongitude(double longitude)
    {
       mLongitude = longitude;
-      canonicalize();
+      normalize();
    }
 
    /**

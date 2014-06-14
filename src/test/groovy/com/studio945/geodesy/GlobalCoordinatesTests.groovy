@@ -7,8 +7,8 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     def northPole = GlobalCoordinates.northPole()
 
     then: "should return proper North Pole GlobalCoordinates"
-    10.0d == northPole.longitude
     90.0d == northPole.latitude
+    10.0d == northPole.longitude
   }
 
   def "should create proper GlobalCoordinates for South Pole"() {
@@ -16,8 +16,8 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     def southPole = GlobalCoordinates.southPole()
 
     then: "should return proper South Pole GlobalCoordinates"
-    10.0d == southPole.longitude
     90.0d == southPole.latitude
+    10.0d == southPole.longitude
   }
 
   def "should create proper GlobalCoordinates for Equator Greenwich"() {
@@ -25,8 +25,8 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     def equator = GlobalCoordinates.createEquatorGreenwich()
 
     then: "should return proper Equator Greenwich Global Coordinates"
-    0.0d == equator.longitude
     0.0d == equator.latitude
+    0.0d == equator.longitude
   }
 
   def "should create proper GlobalCoordinates for Equator IDL"() {
@@ -34,11 +34,11 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     def equator = GlobalCoordinates.createEquatorIDL()
 
     then: "should return proper Equator IDL Global Coordinates"
-    180.0d == equator.longitude
     0.0d == equator.latitude
+    180.0d == equator.longitude
   }
 
-  def "should normalize latitude value when value is less than -90.0"() {
+  def "should normalize longitude/latitude values when location is on opposite hemisphere"() {
     when: "instantiate a new instance"
     def lat = -90.000000009d
     def longitude = 0.0d
@@ -49,26 +49,28 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     180.0d == e.longitude
   }
 
-  def "should normalize longitude value to within proper range"() {
+  def "should normalize longitude value when location is on opposite hemisphere"() {
     when: "instantiate a new instance"
-    def lat = 90.0d
+    def lat = 45.0d
     def longitude = -180.001d
     def e = new GlobalCoordinates(lat, longitude)
 
     then: "should return proper latitude and longitude"
-    90.0d == e.latitude
+    45.0d == e.latitude
     179.999 == e.longitude.round(3)
   }
 
   def "should NOT normalize values when values are already within range"() {
+    when: "instantiate a new instance"
+    def lat = 90.0d
+    def longitude = -179.999d
+    def e = new GlobalCoordinates(lat, longitude)
 
+    then: "should return proper latitude and longitude"
+    90.0d == e.latitude
+    -179.999d == e.longitude
   }
-//  public void testConstructor2() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(90.0, -179.999);
-//    assertEquals("globalCoordinates.getLongitude()", -179.999, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 90.0, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
+
 //  public void testConstructor3() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-450.0009, 360.001);
 //    assertEquals("globalCoordinates.getLongitude()", -179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
