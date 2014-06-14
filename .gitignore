@@ -10,3 +10,4 @@ gradlew.bat
 *.ipr
 *.iws
 out/
+code_coverage.log
