@@ -27,10 +27,10 @@ package com.studio945.geodesy
 public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Serializable
 {
    /** Latitude in degrees. Negative latitude is southern hemisphere. */
-   private double mLatitude;
+   def private double latitude
 
    /** Longitude in degrees. Negative longitude is western hemisphere. */
-   private double mLongitude;
+   def private double longitude
 
    /**
     * Canonicalize the current latitude and longitude values such that:
@@ -41,24 +41,24 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
     */
    private void canonicalize()
    {
-      mLatitude = (mLatitude + 180) % 360;
-      if (mLatitude < 0) mLatitude += 360;
-      mLatitude -= 180;
+      latitude = (latitude + 180) % 360;
+      if (latitude < 0) latitude += 360;
+      latitude -= 180;
 
-      if (mLatitude > 90)
+      if (latitude > 90)
       {
-         mLatitude = 180 - mLatitude;
-         mLongitude += 180;
+         latitude = 180 - latitude;
+         longitude += 180;
       }
-      else if (mLatitude < -90)
+      else if (latitude < -90)
       {
-         mLatitude = -180 - mLatitude;
-         mLongitude += 180;
+         latitude = -180 - latitude;
+         longitude += 180;
       }
 
-      mLongitude = ((mLongitude + 180) % 360);
-      if (mLongitude <= 0) mLongitude += 360;
-      mLongitude -= 180;
+      longitude = ((longitude + 180) % 360);
+      if (longitude <= 0) longitude += 360;
+      longitude -= 180;
    }
 
    /**
@@ -69,8 +69,8 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
     */
    public GlobalCoordinates(double latitude, double longitude)
    {
-      mLatitude = latitude;
-      mLongitude = longitude;
+      latitude = latitude;
+      longitude = longitude;
       canonicalize();
    }
 
@@ -81,7 +81,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
     */
    public double getLatitude()
    {
-      return mLatitude;
+      return latitude;
    }
 
    /**
@@ -92,7 +92,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
     */
    public void setLatitude(double latitude)
    {
-      mLatitude = latitude;
+      latitude = latitude;
       canonicalize();
    }
 
@@ -103,7 +103,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
     */
    public double getLongitude()
    {
-      return mLongitude;
+      return longitude;
    }
 
    /**
@@ -114,7 +114,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
     */
    public void setLongitude(double longitude)
    {
-      mLongitude = longitude;
+      longitude = longitude;
       canonicalize();
    }
 
@@ -130,10 +130,10 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
    {
       int retval;
 
-      if (mLongitude < other.mLongitude) retval = -1;
-      else if (mLongitude > other.mLongitude) retval = +1;
-      else if (mLatitude < other.mLatitude) retval = -1;
-      else if (mLatitude > other.mLatitude) retval = +1;
+      if (longitude < other.longitude) retval = -1;
+      else if (longitude > other.longitude) retval = +1;
+      else if (latitude < other.latitude) retval = -1;
+      else if (latitude > other.latitude) retval = +1;
       else retval = 0;
 
       return retval;
@@ -147,7 +147,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
    @Override
    public int hashCode()
    {
-      return ((int) (mLongitude * mLatitude * 1000000 + 1021)) * 1000033;
+      return ((int) (longitude * latitude * 1000000 + 1021)) * 1000033;
    }
 
    /**
@@ -163,7 +163,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
 
       GlobalCoordinates other = (GlobalCoordinates) obj;
 
-      return (mLongitude == other.mLongitude) && (mLatitude == other.mLatitude);
+      return (longitude == other.longitude) && (latitude == other.latitude);
    }
 
    /**
@@ -174,13 +174,33 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
    {
       StringBuffer buffer = new StringBuffer();
 
-      buffer.append(Math.abs(mLatitude));
-      buffer.append((mLatitude >= 0) ? 'N' : 'S');
+      buffer.append(Math.abs(latitude));
+      buffer.append((latitude >= 0) ? 'N' : 'S');
       buffer.append(';');
-      buffer.append(Math.abs(mLongitude));
-      buffer.append((mLongitude >= 0) ? 'E' : 'W');
+      buffer.append(Math.abs(longitude));
+      buffer.append((longitude >= 0) ? 'E' : 'W');
       buffer.append(';');
 
       return buffer.toString();
    }
+
+  def static GlobalCoordinates northPole()
+  {
+    new GlobalCoordinates( 90, 10 );
+  }
+
+  def static GlobalCoordinates createSouthPole()
+  {
+    new GlobalCoordinates( 90, 10 );
+  }
+
+  def static GlobalCoordinates createEquatorGreenwich()
+  {
+    new GlobalCoordinates( 0, 0 );
+  }
+
+  def static GlobalCoordinates createEquatorIDL()
+  {
+    new GlobalCoordinates( 0, 180.0 );
+  }
 }
