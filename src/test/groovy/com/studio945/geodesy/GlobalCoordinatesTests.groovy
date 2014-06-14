@@ -38,7 +38,7 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     0.0d == equator.latitude
   }
 
-  def "when creating GlobalCoordinates, latitude and longitude will be normalized"() {
+  def "should normalize latitude value when value is less than -90.0"() {
     when: "instantiate a new instance"
     def lat = -90.000000009d
     def longitude = 0.0d
@@ -49,7 +49,7 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     180.0d == e.longitude
   }
 
-  def "two"() {
+  def "should normalize longitude value to within proper range"() {
     when: "instantiate a new instance"
     def lat = 90.0d
     def longitude = -180.001d
@@ -59,12 +59,10 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     90.0d == e.latitude
     179.999 == e.longitude.round(3)
   }
-//  public void testConstructor1() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(90.0, -180.001);
-//    assertEquals("globalCoordinates.getLongitude()", 179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 90.0, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
+
+  def "should NOT normalize values when values are already within range"() {
+
+  }
 //  public void testConstructor2() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(90.0, -179.999);
 //    assertEquals("globalCoordinates.getLongitude()", -179.999, globalCoordinates.getLongitude(), 1.0E-6);
