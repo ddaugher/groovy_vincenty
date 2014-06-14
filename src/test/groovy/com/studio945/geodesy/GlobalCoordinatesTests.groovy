@@ -57,7 +57,7 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
 
     then: "should return proper latitude and longitude"
     90.0d == e.latitude
-    179.99900000000002 == e.longitude
+    179.999 == e.longitude.round(3)
   }
 //  public void testConstructor1() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(90.0, -180.001);
