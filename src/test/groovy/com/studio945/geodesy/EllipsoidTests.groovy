@@ -103,4 +103,15 @@ public class EllipsoidTests extends spock.lang.Specification {
     0.003398355196085095 == e.flattening
     294.26 == e.inverseFlattening
   }
+
+  def "should properly create Clarke1880 ellipsoid"() {
+    when: "create Clarke1880 ellipsoid"
+    def e = Ellipsoid.Clarke1880
+
+    then:
+    6378249.145 == e.semiMajorAxis
+    6356514.8695497755 == e.semiMinorAxis
+    0.003407561378699334 == e.flattening
+    293.465 == e.inverseFlattening
+  }
 }
