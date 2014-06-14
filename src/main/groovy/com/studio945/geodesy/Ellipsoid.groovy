@@ -2,10 +2,10 @@ package com.studio945.geodesy
 
 class Ellipsoid implements Serializable
 {
-   def double mSemiMajorAxis
-   def double mSemiMinorAxis
-   def double mFlattening
-   def double mInverseFlattening
+   def double semiMajorAxis
+   def double semiMinorAxis
+   def double flattening
+   def double inverseFlattening
 
    /** The WGS84 ellipsoid. */
    static def final Ellipsoid WGS84 = fromAAndInverseF(6378137.0, 298.257223563)
@@ -42,7 +42,11 @@ class Ellipsoid implements Serializable
      double f = 1.0 / inverseFlattening
      double b = (1.0 - f) * semiMajor
 
-     return new Ellipsoid(semiMajor, b, f, inverseFlattening)
+     return new Ellipsoid(
+       semiMajorAxis: semiMajor,
+       semiMinorAxis: b,
+       flattening: f,
+       inverseFlattening: inverseFlattening)
    }
 
    /**
@@ -56,6 +60,10 @@ class Ellipsoid implements Serializable
      double inverseF = 1.0 / flattening
      double b = (1.0 - flattening) * semiMajor
 
-     return new Ellipsoid(semiMajor, b, flattening, inverseF)
+     return new Ellipsoid(
+       semiMajorAxis: semiMajor,
+       semiMinorAxis: b,
+       flattening: flattening,
+       inverseFlattening: inverseF)
    }
 }
