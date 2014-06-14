@@ -101,6 +101,6 @@ public class EllipsoidTests extends spock.lang.Specification {
     6378293.645 == e.semiMajorAxis
     6356617.937649357 == e.semiMinorAxis
     0.003398355196085095 == e.flattening
-    298.26 == e.inverseFlattening
+    294.26 == e.inverseFlattening
   }
 }
