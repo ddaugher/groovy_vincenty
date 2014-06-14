@@ -114,4 +114,15 @@ public class EllipsoidTests extends spock.lang.Specification {
     0.003407561378699334 == e.flattening
     293.465 == e.inverseFlattening
   }
+
+  def "should properly create Sphere ellipsoid"() {
+    when: "create Sphere ellipsoid"
+    def e = Ellipsoid.Sphere
+
+    then:
+    6371000.0 == e.semiMajorAxis
+    6371000.0 == e.semiMinorAxis
+    0.0 == e.flattening
+    Double.POSITIVE_INFINITY == e.inverseFlattening
+  }
 }
