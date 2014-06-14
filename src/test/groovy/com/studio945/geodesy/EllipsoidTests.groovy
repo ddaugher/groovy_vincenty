@@ -81,4 +81,15 @@ public class EllipsoidTests extends spock.lang.Specification {
     0.003352891869237217 == e.flattening
     298.25 == e.inverseFlattening
   }
+
+  def "should properly create WGS72 ellipsoid"() {
+    when: "create WGS72 ellipsoid"
+    def e = Ellipsoid.WGS72
+
+    then:
+    6378160.0 == e.semiMajorAxis
+    6356774.719195305 == e.semiMinorAxis
+    0.003352891869237217 == e.flattening
+    298.25 == e.inverseFlattening
+  }
 }
