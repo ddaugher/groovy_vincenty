@@ -13,7 +13,7 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
 
   def "should create proper GlobalCoordinates for South Pole"() {
     when: "instantiate a new instance"
-    def southPole = GlobalCoordinates.createSouthPole()
+    def southPole = GlobalCoordinates.southPole()
 
     then: "should return proper South Pole GlobalCoordinates"
     10.0d == southPole.longitude

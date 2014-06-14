@@ -189,7 +189,7 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
     new GlobalCoordinates( 90, 10 );
   }
 
-  def static GlobalCoordinates createSouthPole()
+  def static GlobalCoordinates southPole()
   {
     new GlobalCoordinates( 90, 10 );
   }
