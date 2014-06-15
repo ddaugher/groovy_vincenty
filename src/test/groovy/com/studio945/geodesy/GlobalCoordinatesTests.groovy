@@ -62,15 +62,25 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
 
   def "should NOT normalize values when values are already within range"() {
     when: "instantiate a new instance"
-    def lat = 90.0d
+    def lat = 45.0d
     def longitude = -179.999d
     def e = new GlobalCoordinates(lat, longitude)
 
     then: "should return proper latitude and longitude"
-    90.0d == e.latitude
+    45.0d == e.latitude
     -179.999d == e.longitude
   }
 
+  def "should wrap properly when values are outside the accepted range"() {
+    when: "instantiate a new instance"
+    def latitude = -450.009d
+    def longitude = 360.01
+    def e = new GlobalCoordinates(latitude, longitude)
+
+    then: "should return proper latitude and longitude"
+    -89.991 == e.latitude.round(3)
+    -179.99d == e.longitude
+  }
 //  public void testConstructor3() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-450.0009, 360.001);
 //    assertEquals("globalCoordinates.getLongitude()", -179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
