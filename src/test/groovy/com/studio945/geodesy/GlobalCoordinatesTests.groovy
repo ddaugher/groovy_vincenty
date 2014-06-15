@@ -81,18 +81,28 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     -89.991 == e.latitude.round(3)
     -179.99d == e.longitude
   }
-//  public void testConstructor3() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-450.0009, 360.001);
-//    assertEquals("globalCoordinates.getLongitude()", -179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -89.9991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor4() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-1169.9991, -179.999);
-//    assertEquals("globalCoordinates.getLongitude()", -179.999, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -89.9991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
+
+  def "another example of wrapping"() {
+    when: "instantiate a new instance"
+    def latitude = -1169.9991d
+    def longitude = -179.999d
+    def e = new GlobalCoordinates(latitude, longitude)
+
+    then: "should return proper latitude and longitude"
+    -89.9991 == e.latitude
+    -179.999d == e.longitude
+  }
+
+  def "dj another example of wrapping"() {
+    when: "instantiate a new instance"
+    def latitude = -450.0009d
+    def longitude = 0.0d
+    def e = new GlobalCoordinates(latitude, longitude)
+
+    then: "should return proper latitude and longitude"
+    -89.9991 == e.latitude
+    180.0d == e.longitude
+  }
 //  public void testConstructor5() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-450.0009, 0.0);
 //    assertEquals("globalCoordinates.getLongitude()", 180.0, globalCoordinates.getLongitude(), 1.0E-6);
