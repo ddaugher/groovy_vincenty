@@ -126,18 +126,16 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     180.0 == e.longitude
   }
 
-//  public void testConstructor7() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(180.0, 0.0);
-//    assertEquals("globalCoordinates.getLatitude()", 0.0, globalCoordinates.getLatitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLongitude()", 180.0, globalCoordinates.getLongitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor8() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(90.0009, 360.001);
-//    assertEquals("globalCoordinates.getLongitude()", -179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 89.9991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
+  def "dj end up on the other side of the earth, just stay on the equator"() {
+    when: "instantiate a new instance"
+    def latitude = 90.0009d
+    def longitude = 360.001d
+    def e = new GlobalCoordinates(latitude, longitude)
+
+    then: "should return proper latitude and longitude"
+    89.9991 == e.latitude
+    -179.999 == e.longitude.round(3)
+  }
 //  public void testConstructor9() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-90.0009, 100.0);
 //    assertEquals("globalCoordinates.getLongitude()", -80.0, globalCoordinates.getLongitude(), 1.0E-6);
@@ -228,6 +226,78 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
 //    assertEquals("globalCoordinates.getLatitude()", -90.0, globalCoordinates.getLatitude(), 1.0E-6);
 //  }
 //
+
+  def "should return -1 when left longitude is less than right"() {
+    when: "instantiate two global coordinates"
+    def left = new GlobalCoordinates(0.0, 0.0)
+    def right = new GlobalCoordinates(0.0, 80.0)
+
+    then: "compare the right to the left"
+    def result = left.compareTo(right)
+
+    expect: "the left to be less"
+    -1 == result
+  }
+
+  def "should return +1 when left longitude is greater than right"() {
+    when: "instantiate two global coordinates"
+    def left = new GlobalCoordinates(0.0, 80.0)
+    def right = new GlobalCoordinates(0.0, 0.0)
+
+    then: "compare the right to the left"
+    def result = left.compareTo(right)
+
+    expect: "the left to be greater"
+    1 == result
+  }
+
+  def "should return -1 when left latitude is less than right"() {
+    when: "instantiate two global coordinates"
+    def left = new GlobalCoordinates(0.0, 0.0)
+    def right = new GlobalCoordinates(80.0, 0.0)
+
+    then: "compare the right to the left"
+    def result = left.compareTo(right)
+
+    expect: "the left to be less"
+    -1 == result
+  }
+
+  def "should return 1 when left latitude is greater than right"() {
+    when: "instantiate two global coordinates"
+    def left = new GlobalCoordinates(80.0, 0.0)
+    def right = new GlobalCoordinates(0.0, 0.0)
+
+    then: "compare the right to the left"
+    def result = left.compareTo(right)
+
+    expect: "the left to be greater"
+    1 == result
+  }
+
+  def "should return 0 when left latitude is equal than right"() {
+    when: "instantiate two global coordinates"
+    def left = new GlobalCoordinates(80.0, 0.0)
+    def right = new GlobalCoordinates(80.0, 0.0)
+
+    then: "compare the right to the left"
+    def result = left.compareTo(right)
+
+    expect: "both global coordinates to be equal"
+    0 == result
+  }
+
+  def "comparing two coordinates when latitude wrapping occurs"() {
+    when: "instantiate two different global coordinates"
+    def left = new GlobalCoordinates(1000.0, 0.0)
+    def right = new GlobalCoordinates(0.0, 0.0)
+
+    then: "compare the right to the left"
+    def result = left.compareTo(right)
+
+    expect: "the left to be less"
+    -1 == result
+  }
 //  public void testCompareTo() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(1000.0, 0.0);
 //    int result = globalCoordinates.compareTo(new GlobalCoordinates(0.0, 0.0));
