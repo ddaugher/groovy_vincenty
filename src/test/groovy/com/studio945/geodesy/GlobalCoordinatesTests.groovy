@@ -93,7 +93,7 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     -179.999d == e.longitude
   }
 
-  def "dj another example of wrapping"() {
+  def "latitude pushed over the pole causes the longitude to flip to opposite hemisphere"() {
     when: "instantiate a new instance"
     def latitude = -450.0009d
     def longitude = 0.0d
@@ -103,22 +103,33 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     -89.9991 == e.latitude
     180.0d == e.longitude
   }
-//  public void testConstructor5() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-450.0009, 0.0);
-//    assertEquals("globalCoordinates.getLongitude()", 180.0, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -89.9991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor6() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(180.001, 360.001);
-//    assertEquals("globalCoordinates.getLongitude()", -179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -9.999999999763531E-4, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
+
+  def "latitude pushes coordinate into southern hemisphere and longitude starts on opposite side of earth"() {
+    when: "instantiate a new instance"
+    def latitude = 180.001d
+    def longitude = 360.001d
+    def e = new GlobalCoordinates(latitude, longitude)
+
+    then: "should return proper latitude and longitude"
+    -9.999999999763531E-4 == e.latitude
+    -179.99900000000002d == e.longitude
+  }
+
+  def "end up on the other side of the earth, just stay on the equator"() {
+    when: "instantiate a new instance"
+    def latitude = 180.0d
+    def longitude = 0.0d
+    def e = new GlobalCoordinates(latitude, longitude)
+
+    then: "should return proper latitude and longitude"
+    0.0 == e.latitude
+    180.0 == e.longitude
+  }
+
 //  public void testConstructor7() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(180.0, 0.0);
-//    assertEquals("globalCoordinates.getLongitude()", 180.0, globalCoordinates.getLongitude(), 1.0E-6);
 //    assertEquals("globalCoordinates.getLatitude()", 0.0, globalCoordinates.getLatitude(), 1.0E-6);
+//    assertEquals("globalCoordinates.getLongitude()", 180.0, globalCoordinates.getLongitude(), 1.0E-6);
 //  }
 //
 //  public void testConstructor8() throws Throwable {
