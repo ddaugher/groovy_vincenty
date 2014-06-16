@@ -1,6 +1,6 @@
 package com.studio945.geodesy;
 
-public class GlobalCoordinatesTests extends spock.lang.Specification {
+public class GlobalCoordinatesToStringTests extends spock.lang.Specification {
 
   def "should create proper GlobalCoordinates for North Pole"() {
     when: "instantiate a new instance"
@@ -298,19 +298,29 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     expect: "the left to be less"
     -1 == result
   }
-
-  def "dj comparing two coordinates when latitude wrapping occurs"() {
-    when: "instantiate two different global coordinates"
-    def left = new GlobalCoordinates(-54.12682626557432, -43.319025743636864)
-    def right = new GlobalCoordinates(-54.12682626557432, -43.31902574363687)
-
-    then: "compare the right to the left"
-    def result = left.compareTo(right)
-
-    expect: "the left to be less"
-    0 == result
-  }
-
+//  public void testCompareTo() throws Throwable {
+//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(1000.0, 0.0);
+//    int result = globalCoordinates.compareTo(new GlobalCoordinates(0.0, 0.0));
+//    assertEquals("result", -1, result);
+//  }
+//
+//  public void testCompareTo1() throws Throwable {
+//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-54.12682626557432, -43.319025743636864);
+//    int result = new GlobalCoordinates(-54.12682626557432, -43.31902574363687).compareTo(globalCoordinates);
+//    assertEquals("result", 0, result);
+//  }
+//
+//  public void testCompareTo2() throws Throwable {
+//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(0.0, -69.0);
+//    int result = globalCoordinates.compareTo(new GlobalCoordinates(-1.0, -69.0));
+//    assertEquals("result", 1, result);
+//  }
+//
+//  public void testCompareTo3() throws Throwable {
+//    int result = new GlobalCoordinates(0.0, -28.367958936972176).compareTo(new GlobalCoordinates(1000.0, -28.36739158630371));
+//    assertEquals("result", -1, result);
+//  }
+//
 //  public void testCompareTo4() throws Throwable {
 //    GlobalCoordinates other = new GlobalCoordinates(100.0, 1000.0);
 //    other.setLongitude(359.999);
@@ -506,6 +516,41 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
 //    globalCoordinates.setLongitude(100.0);
 //    assertEquals("globalCoordinates.getLongitude()", 100.0, globalCoordinates.getLongitude(), 1.0E-6);
 //    assertEquals("globalCoordinates.getLatitude()", -89.9991, globalCoordinates.getLatitude(), 1.0E-6);
+//  }
+//
+//  public void testToString() throws Throwable {
+//    String result = new GlobalCoordinates(0.0, 100.0).toString();
+//    assertEquals("result", "0.0N;100.0E;", result);
+//  }
+//
+//  public void testToString1() throws Throwable {
+//    String result = new GlobalCoordinates(-0.0010, 100.0).toString();
+//    assertEquals("result", "0.0010000000000047748S;100.0E;", result);
+//  }
+//
+//  public void testToString2() throws Throwable {
+//    String result = new GlobalCoordinates(100.0, -179.999).toString();
+//    assertEquals("result", "80.0N;0.0010000000000047748E;", result);
+//  }
+//
+//  public void testToString3() throws Throwable {
+//    String result = new GlobalCoordinates(1000.0, 0.0).toString();
+//    assertEquals("result", "80.0S;0.0E;", result);
+//  }
+//
+//  public void testToString4() throws Throwable {
+//    String result = new GlobalCoordinates(-180.001, -179.999).toString();
+//    assertEquals("result", "9.999999999763531E-4N;0.0010000000000047748E;", result);
+//  }
+//
+//  public void testToString5() throws Throwable {
+//    String result = new GlobalCoordinates(1.0, -9.999999999763531E-4).toString();
+//    assertEquals("result", "1.0N;9.999999999763531E-4W;", result);
+//  }
+//
+//  public void testToString6() throws Throwable {
+//    String result = new GlobalCoordinates(1000.0, -9.999999999763531E-4).toString();
+//    assertEquals("result", "80.0S;9.999999999763531E-4W;", result);
 //  }
 
   def "should throw NullPointerException when compared with null global coordinates"() {
