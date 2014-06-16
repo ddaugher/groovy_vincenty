@@ -18,13 +18,22 @@ public class GlobalPositionTests extends spock.lang.Specification {
     -90.0 == gp.latitude
   }
 
-//  public void testConstructor() throws Throwable {
-//    GlobalPosition globalPosition = new GlobalPosition(new GlobalCoordinates(-90.0, 100.0), 100.0);
-//    assertEquals("globalPosition.getLongitude()", 100.0, globalPosition.getLongitude(), 1.0E-6);
-//    assertEquals("globalPosition.getElevation()", 100.0, globalPosition.getElevation(), 1.0E-6);
-//    assertEquals("globalPosition.getLatitude()", -90.0, globalPosition.getLatitude(), 1.0E-6);
-//  }
-//
+  def "should create global position from existing global coordinate and altitude and deal with wrapping"() {
+    when: "a valid global coordinates exists"
+    def gc = new GlobalCoordinates(100.0, 0.0010)
+
+    and: "a valid global position is created from global coordinates"
+    def gp = new GlobalPosition(gc, 100.0)
+
+    then: "longitude should return proper value"
+    -179.99900000000002 == gp.longitude
+
+    then: "elevation should return proper value"
+    100.0 == gp.elevation
+
+    then: "latitude should return proper value"
+    80.0 == gp.latitude
+  }
 //  public void testConstructor1() throws Throwable {
 //    GlobalPosition globalPosition = new GlobalPosition(new GlobalCoordinates(100.0, 0.0010), 100.0);
 //    assertEquals("globalPosition.getLongitude()", -179.99900000000002, globalPosition.getLongitude(), 1.0E-6);
