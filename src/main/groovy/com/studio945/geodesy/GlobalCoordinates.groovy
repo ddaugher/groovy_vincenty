@@ -98,11 +98,8 @@ public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Seriali
    */
   public int compareTo(GlobalCoordinates other) {
     if (mLongitude < other.mLongitude) return -1
-
     if (mLongitude > other.mLongitude) return 1
-
     if (mLatitude < other.mLatitude) return -1
-
     if (mLatitude > other.mLatitude) return 1
 
     0
