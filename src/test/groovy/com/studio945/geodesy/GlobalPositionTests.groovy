@@ -1,26 +1,21 @@
 package com.studio945.geodesy;
 
 public class GlobalPositionTests extends spock.lang.Specification {
-  def "should calculate Geodetic curve using Global Coordinates for start and end position"() {
-    given: "a valid geodetic calculator"
-    def geocalc = new GeodeticCalculator()
+  def "should create global position from existing global coordinate and altitude"() {
+    when: "a valid global coordinates exists"
+    def gc = new GlobalCoordinates(-90.0, 100.0)
 
-    and: "we use the WGS84 ellipsoid"
-    Ellipsoid reference = Ellipsoid.WGS84
+    and: "a valid global position is created from global coordinates"
+    def gp = new GlobalPosition(gc, 100.0)
 
-    and: "set Lincoln Memorial coordinates"
-    GlobalCoordinates lincolnMemorial = new GlobalCoordinates(38.88922, -77.04978)
+    then: "longitude should return proper value"
+    100.0 == gp.longitude
 
-    and: "set Eiffel Tower coordinates"
-    GlobalCoordinates eiffelTower = new GlobalCoordinates(48.85889, 2.29583);
+    then: "elevation should return proper value"
+    100.0 == gp.elevation
 
-    when: "calculate the geodetic curve"
-    GeodeticCurve geoCurve = geocalc.calculateGeodeticCurve(reference, lincolnMemorial, eiffelTower)
-
-    then: "the values should be correct"
-    6179016.136 == geoCurve.getEllipsoidalDistance().round(3) //, 0.001
-    51.76792142 == geoCurve.getAzimuth().round(8) //, 0.0000001
-    291.75529334 == geoCurve.getReverseAzimuth().round(8) //, 0.0000001
+    then: "latitude should return proper value"
+    -90.0 == gp.latitude
   }
 
 //  public void testConstructor() throws Throwable {
