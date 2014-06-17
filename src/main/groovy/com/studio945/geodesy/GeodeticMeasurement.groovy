@@ -52,7 +52,7 @@ public class GeodeticMeasurement extends GeodeticCurve
     */
    public GeodeticMeasurement(GeodeticCurve averageCurve, double elevationChange)
    {
-      this(averageCurve.getEllipsoidalDistance(), averageCurve.getAzimuth(), averageCurve.getReverseAzimuth(), elevationChange);
+      this(averageCurve.getEllipsoidalDistance(), averageCurve.azimuth, averageCurve.reverseAzimuth, elevationChange);
    }
 
    /**

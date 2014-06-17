@@ -88,8 +88,8 @@ public class Example
 		System.out.printf(
 		    "   Ellipsoidal Distance: %1.2f kilometers (%1.2f miles)\n",
 		    ellipseKilometers, ellipseMiles);
-		System.out.printf("   Azimuth:              %1.2f degrees\n", geoCurve.getAzimuth());
-		System.out.printf("   Reverse Azimuth:      %1.2f degrees\n", geoCurve.getReverseAzimuth());
+		System.out.printf("   Azimuth:              %1.2f degrees\n", geoCurve.azimuth);
+		System.out.printf("   Reverse Azimuth:      %1.2f degrees\n", geoCurve.reverseAzimuth);
 	}
 
 	/**
@@ -140,9 +140,9 @@ public class Example
 		    "   Elevation change:        %1.1f meters (%1.1f} feet)\n",
 		    elevChangeMeters, elevChangeFeet);
 		System.out.printf("   Azimuth:                 %1.2f degrees\n",
-		    geoMeasurement.getAzimuth());
+		    geoMeasurement.azimuth);
 		System.out.printf("   Reverse Azimuth:         %1.2f degrees\n",
-		    geoMeasurement.getReverseAzimuth());
+		    geoMeasurement.reverseAzimuth);
 	}
 
 	static public void main(String[] args)

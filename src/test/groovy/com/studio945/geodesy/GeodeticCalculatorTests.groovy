@@ -19,8 +19,8 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 
     then: "the values should be correct"
     6179016.136 == geoCurve.ellipsoidalDistance.round(3) //, 0.001
-    51.76792142 == geoCurve.getAzimuth().round(8) //, 0.0000001
-    291.75529334 == geoCurve.getReverseAzimuth().round(8) //, 0.0000001
+    51.76792142 == geoCurve.azimuth.round(8) //, 0.0000001
+    291.75529334 == geoCurve.reverseAzimuth.round(8) //, 0.0000001
   }
 
   def "should calculate geodetic measurement using GlobalPosition for start and end position"() {
@@ -46,10 +46,10 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     1521782.748 == geoMeasurement.ellipsoidalDistance.round(3)
 
     then: "the asimuth value should be correct"
-    271.21039153 == geoMeasurement.getAzimuth().round(8)
+    271.21039153 == geoMeasurement.azimuth.round(8)
 
     then: "the reverse asimuth should be correct"
-    80.38029386 == geoMeasurement.getReverseAzimuth().round(8)
+    80.38029386 == geoMeasurement.reverseAzimuth.round(8)
   }
 
   def "test anti podal 1"() {
@@ -69,10 +69,10 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     19970718.422432076 == geoCurve.ellipsoidalDistance.round(9)
 
     then: "the asimuth value should be correct"
-    90.0004877491174 == geoCurve.getAzimuth().round(13)
+    90.0004877491174 == geoCurve.azimuth.round(13)
 
     then: "the reverse asimuth should be correct"
-    270.0004877491174 == geoCurve.getReverseAzimuth().round(13)
+    270.0004877491174 == geoCurve.reverseAzimuth.round(13)
   }
 
   def "test anti podal 2"() {
@@ -92,10 +92,10 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     19893320.272061437 == geoCurve.ellipsoidalDistance.round(9)
 
     then: "the asimuth value should be correct"
-    360.0 == geoCurve.getAzimuth().round(0)
+    360.0 == geoCurve.azimuth.round(0)
 
     then: "the reverse asimuth should be correct"
-    0.0 == geoCurve.getReverseAzimuth().round(0)
+    0.0 == geoCurve.reverseAzimuth.round(0)
   }
 
   def "test inverse with direct"() {
@@ -113,7 +113,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 
     and: "plug the result into the direct solution"
     double[] endBearing = new double[1];
-    GlobalCoordinates dest = geocalc.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, lincolnMemorial, geoCurve.getAzimuth(), geoCurve.ellipsoidalDistance, endBearing);
+    GlobalCoordinates dest = geocalc.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, lincolnMemorial, geoCurve.azimuth, geoCurve.ellipsoidalDistance, endBearing);
 
     then: "the destination latitude will be"
     eiffelTower.getLatitude().round(8) == dest.getLatitude().round(8)
@@ -224,13 +224,13 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 //  public void testCalculateGeodeticCurve() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(100.0, 100.0);
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(EllipsoidTestHelper.createGRS80(), new GlobalCoordinates(0.0, 100.0), globalCoordinates);
-//    assertEquals("result.getAzimuth()", 0.0, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 0.0, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve1() throws Throwable {
 //    Ellipsoid ellipsoid = (Ellipsoid) callPrivateMethod("org.gavaghan.geodesy.Ellipsoid", "<init>", new Class[] {double.class, double.class, double.class, double.class}, null, new Object[] {new Double(100.0), new Double(1000.0), new Double(1.9641906023025513), new Double(0.0)});
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(ellipsoid, new GlobalCoordinates(1.0, 0.0), new GlobalCoordinates(0.6347497701644897, 2.227550983428955));
-//    assertEquals("result.getAzimuth()", 180.0, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 180.0, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve2() throws Throwable {
@@ -263,7 +263,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 //  public void testCalculateGeodeticCurve3() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(1.2332849502563477, 100.0);
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(EllipsoidTestHelper.createGRS80(), new GlobalCoordinates(1.2948811054229736, 100.0), globalCoordinates);
-//    assertEquals("result.getAzimuth()", 180.0, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 180.0, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve4() throws Throwable {
@@ -280,22 +280,22 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 //  public void testCalculateGeodeticCurve6() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(0.0, 1.0);
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(EllipsoidTestHelper.createSphere(), globalCoordinates, new GlobalCoordinates(1.0, 1.001));
-//    assertEquals("result.getAzimuth()", 0.057289942535358455, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 0.057289942535358455, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve7() throws Throwable {
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(EllipsoidTestHelper.createGRS80(), GlobalCoordinatesTestHelper.createNorthPole(), GlobalCoordinatesTestHelper.createEquatorIDL());
-//    assertEquals("result.getAzimuth()", 9.999999999999998, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 9.999999999999998, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve8() throws Throwable {
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(EllipsoidTestHelper.createGRS80(), new GlobalCoordinates(90.001, 100.0), GlobalCoordinatesTestHelper.createEquatorGreenwich());
-//    assertEquals("result.getAzimuth()", 99.99999479885369, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 99.99999479885369, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve9() throws Throwable {
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(EllipsoidTestHelper.createSphere(), GlobalCoordinatesTestHelper.createEquatorGreenwich(), new GlobalCoordinates(0.0, 1000.0));
-//    assertEquals("result.getAzimuth()", 270.0, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 270.0, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve10() throws Throwable {
@@ -350,13 +350,13 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 //
 //  public void testCalculateGeodeticCurve11() throws Throwable {
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(EllipsoidTestHelper.createGRS80(), new GlobalCoordinates(90.001, 1.0), new GlobalCoordinates(11.0, 1.001));
-//    assertEquals("result.getAzimuth()", 359.9990000034733, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 359.9990000034733, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve12() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(1000.0, 0.0);
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(Ellipsoid.WGS84, globalCoordinates, new GlobalCoordinates(0.0, 1.0));
-//    assertEquals("result.getAzimuth()", 1.0163673464214555, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 1.0163673464214555, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve13() throws Throwable {
@@ -375,7 +375,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 //    Mockingbird.setReturnValue(true, Math.class, "tan", "(double)double", new Object[] {new Double(0.8519608122087252)}, new Double(1.1428444247537557), 1);
 //    Mockingbird.enterTestMode(GeodeticCalculator.class);
 //    GeodeticCurve result = geodeticCalculator.calculateGeodeticCurve(ellipsoid, start, end);
-//    assertEquals("result.getAzimuth()", 180.38051146461564, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 180.38051146461564, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve14() throws Throwable {
@@ -386,12 +386,12 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 //
 //  public void testCalculateGeodeticCurve15() throws Throwable {
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(EllipsoidTestHelper.createGRS80(), new GlobalCoordinates(-990.010800009, 1.0), new GlobalCoordinates(-10.0, 1.001));
-//    assertEquals("result.getAzimuth()", 179.99900003211255, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 179.99900003211255, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticCurve16() throws Throwable {
 //    GeodeticCurve result = new GeodeticCalculator().calculateGeodeticCurve(EllipsoidTestHelper.createGRS80(), new GlobalCoordinates(100.0, 2.227550983428955), new GlobalCoordinates(213.3948211669922, 1.8377326726913452));
-//    assertEquals("result.getAzimuth()", 180.35501962740037, result.getAzimuth(), 1.0E-6);
+//    assertEquals("result.azimuth", 180.35501962740037, result.azimuth, 1.0E-6);
 //  }
 //
 //  public void testCalculateGeodeticMeasurement() throws Throwable {

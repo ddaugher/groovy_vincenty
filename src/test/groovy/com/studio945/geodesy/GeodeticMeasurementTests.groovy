@@ -7,10 +7,10 @@ public class GeodeticMeasurementTests extends spock.lang.Specification {
     def geodeticMeasurement = new GeodeticMeasurement(new GeodeticCurve(100.0, 1000.0, 0.0), 100.0)
 
     then:
-    0.0 == geodeticMeasurement.getReverseAzimuth()
+    0.0 == geodeticMeasurement.reverseAzimuth
     141.4213562373095 == geodeticMeasurement.getPointToPointDistance()
     100.0 == geodeticMeasurement.getEllipsoidalDistance()
-    1000.0 == geodeticMeasurement.getAzimuth()
+    1000.0 == geodeticMeasurement.azimuth
     100.0 == geodeticMeasurement.getElevationChange()
   }
 
