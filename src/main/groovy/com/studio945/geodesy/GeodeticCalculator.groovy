@@ -356,7 +356,7 @@ public class GeodeticCalculator
       double refA = refEllipsoid.getSemiMajorAxis();
       double f = refEllipsoid.getFlattening();
       double a = refA + elev12 * (1.0 + f * Math.sin(phi12));
-      Ellipsoid ellipsoid = Ellipsoid.fromAAndF(a, f);
+      Ellipsoid ellipsoid = Ellipsoid.createFromSemiMajorAxisAndFlattening(a, f);
 
       // calculate the curve at the average elevation
       GeodeticCurve averageCurve = calculateGeodeticCurve(ellipsoid, start, end);

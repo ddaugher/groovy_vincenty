@@ -22,7 +22,7 @@ public class EllipsoidTests extends spock.lang.Specification {
     when: "create new ellipsoid"
     def semiMajorAxis = 100.0d
     def flattening = 1000.0d
-    def e = Ellipsoid.fromAAndF(semiMajorAxis, flattening)
+    def e = Ellipsoid.createFromSemiMajorAxisAndFlattening(semiMajorAxis, flattening)
 
     then:
     1000.0d == e.flattening
@@ -32,7 +32,7 @@ public class EllipsoidTests extends spock.lang.Specification {
     when: "create new ellipsoid"
     def semiMajorAxis = 100.0d
     def inverseFlattening = 1000.0d
-    def e = Ellipsoid.fromAAndF(semiMajorAxis, inverseFlattening)
+    def e = Ellipsoid.createFromSemiMajorAxisAndFlattening(semiMajorAxis, inverseFlattening)
 
     then:
     0.0010d == e.inverseFlattening

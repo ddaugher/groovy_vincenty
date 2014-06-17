@@ -425,7 +425,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 //    Mockingbird.setReturnValue(end.getLatitude(), 0.8358408808708191);
 //    Mockingbird.setReturnValue(Angle.toRadians(1000.0), 0.014588175393965482);
 //    Ellipsoid gRS80 = EllipsoidTestHelper.createGRS80();
-//    Mockingbird.setReturnValue(Ellipsoid.fromAAndF(100.0, 1000.0), gRS80);
+//    Mockingbird.setReturnValue(Ellipsoid.createFromSemiMajorAxisAndFlattening(100.0, 1000.0), gRS80);
 //    Mockingbird.setReturnValue(gRS80.getFlattening(), 0.0033528106647474805);
 //    Mockingbird.setReturnValue(start.getLatitude(), 0.10000000149011612);
 //    Mockingbird.setReturnValue(Angle.toRadians(0.0), 0.0017453292780017621);
@@ -458,7 +458,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 //    Mockingbird.setReturnValue(end.getLatitude(), 0.0);
 //    Mockingbird.setReturnValue(Angle.toRadians(1000.0), 0.0);
 //    Ellipsoid gRS80 = EllipsoidTestHelper.createGRS80();
-//    Mockingbird.setReturnValue(Ellipsoid.fromAAndF(100.0, 1000.0), gRS80);
+//    Mockingbird.setReturnValue(Ellipsoid.createFromSemiMajorAxisAndFlattening(100.0, 1000.0), gRS80);
 //    Mockingbird.setReturnValue(gRS80.getFlattening(), 2.909834146499634);
 //    Mockingbird.setReturnValue(start.getLatitude(), -51.998999999999995);
 //    Mockingbird.setReturnValue(Angle.toRadians(0.0), -0.9075537577445313);
@@ -491,7 +491,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 //    Mockingbird.setReturnValue(end.getLatitude(), 2.219294548034668);
 //    Mockingbird.setReturnValue(Angle.toRadians(1000.0), 0.038733996934764404);
 //    Ellipsoid gRS80 = EllipsoidTestHelper.createGRS80();
-//    Mockingbird.setReturnValue(Ellipsoid.fromAAndF(100.0, 1000.0), gRS80);
+//    Mockingbird.setReturnValue(Ellipsoid.createFromSemiMajorAxisAndFlattening(100.0, 1000.0), gRS80);
 //    Mockingbird.setReturnValue(gRS80.getFlattening(), 0.0033528106647474805);
 //    Mockingbird.setReturnValue(start.getLatitude(), 90.0);
 //    Mockingbird.setReturnValue(Angle.toRadians(0.0), 1.5707963267948966);
