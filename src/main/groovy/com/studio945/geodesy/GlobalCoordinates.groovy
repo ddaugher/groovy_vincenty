@@ -17,10 +17,10 @@ package com.studio945.geodesy
  */
 public class GlobalCoordinates implements Comparable<GlobalCoordinates>, Serializable {
   /** Latitude in degrees. Negative latitude is southern hemisphere. */
-  def private double mLatitude
+  def double mLatitude
 
   /** Longitude in degrees. Negative longitude is western hemisphere. */
-  def private double mLongitude
+  def double mLongitude
 
   /**
    * Canonicalize the current latitude and longitude values such that:

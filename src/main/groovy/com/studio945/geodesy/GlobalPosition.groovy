@@ -109,12 +109,9 @@ public class GlobalPosition extends GlobalCoordinates
 
       GlobalPosition other = (GlobalPosition) obj;
 
-      return (mElevation == other.mElevation) && (Object.equals(other));
+      return (mElevation == other.mElevation) && (mLatitude == other.mLatitude) && (mLongitude == other.mLongitude);
    }
 
-   /**
-    * Get position as a string.
-    */
    @Override
    public String toString()
    {
