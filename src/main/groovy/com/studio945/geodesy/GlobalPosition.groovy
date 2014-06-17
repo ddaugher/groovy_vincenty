@@ -95,7 +95,7 @@ public class GlobalPosition extends GlobalCoordinates
    @Override
    public int hashCode()
    {
-      int hash = Object.hashCode();
+      int hash = super.hashCode();
 
       if (mElevation != 0.0) hash *= (int) mElevation;
 
@@ -124,24 +124,4 @@ public class GlobalPosition extends GlobalCoordinates
 
       return buffer.toString();
    }
-
-  def static GlobalCoordinates createNorthPole()
-  {
-    new GlobalCoordinates( 90, 10 );
-  }
-
-  def static GlobalCoordinates createSouthPole()
-  {
-    new GlobalCoordinates( 90, 10 );
-  }
-
-  def static GlobalCoordinates createEquatorGreenwich()
-  {
-    new GlobalCoordinates( 0, 0 );
-  }
-
-  def static GlobalCoordinates createEquatorIDL()
-  {
-    new GlobalCoordinates( 0, 180.0 );
-  }
 }

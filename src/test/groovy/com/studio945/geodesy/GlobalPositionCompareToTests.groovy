@@ -51,4 +51,13 @@ public class GlobalPositionCompareToTests extends spock.lang.Specification {
     expect: "a valid global position is created"
     -1 == new GlobalPosition(-89.98740000900011, -0.021600000000034925, 0.0).compareTo(new GlobalPosition(new GlobalCoordinates(-1169.987400009, -2160.0216), 100.0));
   }
+
+  def "should return proper hascode"() {
+    when: "a valid global position is created"
+    def gp = new GlobalPosition(100.0, 1000.0, -1.0).hashCode();
+
+    then: "return proper hashcode"
+    -2146483615 == gp.hashCode()
+
+  }
 }

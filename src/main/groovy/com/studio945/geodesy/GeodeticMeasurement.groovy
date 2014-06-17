@@ -77,15 +77,12 @@ public class GeodeticMeasurement extends GeodeticCurve
       return mP2P;
    }
 
-   /**
-    * Get the GeodeticMeasurement as a string.
-    */
    @Override
    public String toString()
    {
       StringBuffer buffer = new StringBuffer();
 
-      buffer.append(Object.toString());
+      buffer.append(super.toString());
       buffer.append("elev12=");
       buffer.append(mElevationChange);
       buffer.append(";p2p=");

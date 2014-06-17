@@ -136,96 +136,6 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     89.9991 == e.latitude
     -179.999 == e.longitude.round(3)
   }
-//  public void testConstructor9() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-90.0009, 100.0);
-//    assertEquals("globalCoordinates.getLongitude()", -80.0, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -89.9991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor10() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-1169.9991, -180.001);
-//    assertEquals("globalCoordinates.getLongitude()", 179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -89.9991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor11() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(100.0, 0.0);
-//    assertEquals("globalCoordinates.getLongitude()", 180.0, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 80.0, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor12() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-90.000000009, 360.001);
-//    assertEquals("globalCoordinates.getLongitude()", -179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -89.999999991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor13() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-180.001, -360.0036);
-//    assertEquals("globalCoordinates.getLongitude()", 179.9964, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 9.999999999763531E-4, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor14() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-181.0, 360.001);
-//    assertEquals("globalCoordinates.getLongitude()", -179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 1.0, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor15() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-269.9991, 360.001);
-//    assertEquals("globalCoordinates.getLongitude()", -179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 89.9991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testConstructor16() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(89.999, -180.001);
-//    assertEquals("globalCoordinates.getLongitude()", 179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 89.99900000000002, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testCanonicalize() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(90.0009, 100.0);
-//    callPrivateMethod("org.gavaghan.geodesy.GlobalCoordinates", "canonicalize", new Class[] {}, globalCoordinates, new Object[] {});
-//    assertEquals("globalCoordinates.getLongitude()", -80.0, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 89.9991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testCanonicalize1() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(90.0, 100.0);
-//    callPrivateMethod("org.gavaghan.geodesy.GlobalCoordinates", "canonicalize", new Class[] {}, globalCoordinates, new Object[] {});
-//    assertEquals("globalCoordinates.getLongitude()", 100.0, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 90.0, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testCanonicalize2() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(100.0, 360.001);
-//    callPrivateMethod("org.gavaghan.geodesy.GlobalCoordinates", "canonicalize", new Class[] {}, globalCoordinates, new Object[] {});
-//    assertEquals("globalCoordinates.getLongitude()", -179.99900000000002, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 80.0, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testCanonicalize3() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-450.0009, 100.0);
-//    callPrivateMethod("org.gavaghan.geodesy.GlobalCoordinates", "canonicalize", new Class[] {}, globalCoordinates, new Object[] {});
-//    assertEquals("globalCoordinates.getLongitude()", -80.0, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -89.9991, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testCanonicalize4() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(100.0, 0.0);
-//    callPrivateMethod("org.gavaghan.geodesy.GlobalCoordinates", "canonicalize", new Class[] {}, globalCoordinates, new Object[] {});
-//    assertEquals("globalCoordinates.getLongitude()", 180.0, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", 80.0, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testCanonicalize5() throws Throwable {
-//    GlobalCoordinates globalCoordinates = new GlobalCoordinates(-90.0, 100.0);
-//    callPrivateMethod("org.gavaghan.geodesy.GlobalCoordinates", "canonicalize", new Class[] {}, globalCoordinates, new Object[] {});
-//    assertEquals("globalCoordinates.getLongitude()", 100.0, globalCoordinates.getLongitude(), 1.0E-6);
-//    assertEquals("globalCoordinates.getLatitude()", -90.0, globalCoordinates.getLatitude(), 1.0E-6);
-//  }
-//
 
   def "should return -1 when left longitude is less than right"() {
     when: "instantiate two global coordinates"
@@ -311,21 +221,49 @@ public class GlobalCoordinatesTests extends spock.lang.Specification {
     0 == result
   }
 
-//  public void testCompareTo4() throws Throwable {
-//    GlobalCoordinates other = new GlobalCoordinates(100.0, 1000.0);
-//    other.setLongitude(359.999);
-//    int result = new GlobalCoordinates(1000.0, 0.0).compareTo(other);
-//    assertEquals("result", 1, result);
+  def "comparing two coordinates after setting new longitude and latitude"() {
+    when: "instantiate global coordinates"
+    def left = new GlobalCoordinates(100.0, 1000.0)
+
+    and: "set longitude"
+    left.longitude = 359.99
+
+    and: "set latitude"
+    left.latitude = 89.999
+
+    then: "other should be greater"
+    1 == new GlobalCoordinates(-270.0, -9.999999999763531E-4).compareTo(left)
+  }
+
+  def "should return proper hashcode"() {
+    when: "instantiate two different global coordinates"
+    def left = new GlobalCoordinates(100.0, 1000.0)
+
+    then: "should return proper hashcode"
+    2146483615 == left.hashCode()
+  }
+
+  def "should return false when global coordinates are not equal"() {
+    when: "instantiate two different global coordinates"
+    def globalCoordinates = new GlobalCoordinates(1000.0, 0.0);
+
+    then: "should not equal"
+    false == globalCoordinates.equals(new GlobalCoordinates(0.0, 360.001));
+  }
+
+  def "should return true when global coordinates are equal"() {
+    when: "instantiate two different global coordinates"
+    def globalCoordinates = new GlobalCoordinates(1000.0, 0.0);
+
+    then: "should not equal"
+    true == globalCoordinates.equals(globalCoordinates);
+  }
+//  public void testHashCode() throws Throwable {
+//    int result = new GlobalCoordinates(100.0, 1000.0).hashCode();
+//    assertEquals("result", 2146483615, result);
 //  }
 //
-//  public void testCompareTo5() throws Throwable {
-//    GlobalCoordinates other = new GlobalCoordinates(100.0, 1000.0);
-//    other.setLongitude(359.999);
-//    other.setLatitude(89.999);
-//    int result = new GlobalCoordinates(-270.0, -9.999999999763531E-4).compareTo(other);
-//    assertEquals("result", 1, result);
-//  }
-//
+
 //  public void testEquals() throws Throwable {
 //    GlobalCoordinates globalCoordinates = new GlobalCoordinates(1000.0, 0.0);
 //    boolean result = globalCoordinates.equals(new GlobalCoordinates(0.0, 360.001));
