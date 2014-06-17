@@ -16,27 +16,27 @@ class Ellipsoid implements Serializable
    static def final Ellipsoid Clarke1880 = fromAAndInverseF(6378249.145, 293.465)
    static def final Ellipsoid Sphere = fromAAndF(6371000, 0.0)
 
-   static public Ellipsoid fromAAndInverseF(double semiMajor, double inverseFlattening)
+   static public Ellipsoid fromAAndInverseF(double semiMajorAxis, double inverseFlattening)
    {
-     double f = 1.0 / inverseFlattening
-     double b = (1.0 - f) * semiMajor
+     double flattening = 1.0 / inverseFlattening
+     double semiMinorAxis = (1.0 - flattening) * semiMajorAxis
 
-     return new Ellipsoid(
-       semiMajorAxis: semiMajor,
-       semiMinorAxis: b,
-       flattening: f,
+     new Ellipsoid(
+       semiMajorAxis: semiMajorAxis,
+       semiMinorAxis: semiMinorAxis,
+       flattening: flattening,
        inverseFlattening: inverseFlattening)
    }
 
-   static public Ellipsoid fromAAndF(double semiMajor, double flattening)
+   static public Ellipsoid fromAAndF(double semiMajorAxis, double flattening)
    {
-     double inverseF = 1.0 / flattening
-     double b = (1.0 - flattening) * semiMajor
+     double inverseFlattening = 1.0 / flattening
+     double semiMinorAxis = (1.0 - flattening) * semiMajorAxis
 
-     return new Ellipsoid(
-       semiMajorAxis: semiMajor,
-       semiMinorAxis: b,
+     new Ellipsoid(
+       semiMajorAxis: semiMajorAxis,
+       semiMinorAxis: semiMinorAxis,
        flattening: flattening,
-       inverseFlattening: inverseF)
+       inverseFlattening: inverseFlattening)
    }
 }
