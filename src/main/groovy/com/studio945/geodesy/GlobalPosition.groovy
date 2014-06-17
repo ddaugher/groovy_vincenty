@@ -81,7 +81,7 @@ public class GlobalPosition extends GlobalCoordinates
     */
    public int compareTo(GlobalPosition other)
    {
-      int retval = Object.compareTo(other);
+      int retval = super.compareTo(other);
 
       if (retval == 0)
       {
