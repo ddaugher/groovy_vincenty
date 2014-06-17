@@ -18,7 +18,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     GeodeticCurve geoCurve = geocalc.calculateGeodeticCurve(reference, lincolnMemorial, eiffelTower)
 
     then: "the values should be correct"
-    6179016.136 == geoCurve.getEllipsoidalDistance().round(3) //, 0.001
+    6179016.136 == geoCurve.ellipsoidalDistance.round(3) //, 0.001
     51.76792142 == geoCurve.getAzimuth().round(8) //, 0.0000001
     291.75529334 == geoCurve.getReverseAzimuth().round(8) //, 0.0000001
   }
@@ -43,7 +43,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     1521788.826 == geoMeasurement.getPointToPointDistance().round(3)
 
     then: "the ellipsoidal distance should be correct"
-    1521782.748 == geoMeasurement.getEllipsoidalDistance().round(3)
+    1521782.748 == geoMeasurement.ellipsoidalDistance.round(3)
 
     then: "the asimuth value should be correct"
     271.21039153 == geoMeasurement.getAzimuth().round(8)
@@ -66,7 +66,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     GeodeticCurve geoCurve = geocalc.calculateGeodeticCurve(Ellipsoid.WGS84, p1, p2);
 
     then: "the ellipsoidal distance should be correct"
-    19970718.422432076 == geoCurve.getEllipsoidalDistance().round(9)
+    19970718.422432076 == geoCurve.ellipsoidalDistance.round(9)
 
     then: "the asimuth value should be correct"
     90.0004877491174 == geoCurve.getAzimuth().round(13)
@@ -89,7 +89,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     GeodeticCurve geoCurve = geocalc.calculateGeodeticCurve(Ellipsoid.WGS84, p1, p2);
 
     then: "the ellipsoidal distance should be correct"
-    19893320.272061437 == geoCurve.getEllipsoidalDistance().round(9)
+    19893320.272061437 == geoCurve.ellipsoidalDistance.round(9)
 
     then: "the asimuth value should be correct"
     360.0 == geoCurve.getAzimuth().round(0)
@@ -113,7 +113,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
 
     and: "plug the result into the direct solution"
     double[] endBearing = new double[1];
-    GlobalCoordinates dest = geocalc.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, lincolnMemorial, geoCurve.getAzimuth(), geoCurve.getEllipsoidalDistance(), endBearing);
+    GlobalCoordinates dest = geocalc.calculateEndingGlobalCoordinates(Ellipsoid.WGS84, lincolnMemorial, geoCurve.getAzimuth(), geoCurve.ellipsoidalDistance, endBearing);
 
     then: "the destination latitude will be"
     eiffelTower.getLatitude().round(8) == dest.getLatitude().round(8)

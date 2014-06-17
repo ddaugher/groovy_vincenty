@@ -1,11 +1,9 @@
 package com.studio945.geodesy
 
-import java.io.Serializable
-
-public class GeodeticCurve implements Serializable
+class GeodeticCurve implements Serializable
 {
    /** Ellipsoidal distance (in meters). */
-   private final double mEllipsoidalDistance;
+   def double ellipsoidalDistance;
 
    /** Azimuth (degrees from north). */
    private final double mAzimuth;
@@ -13,27 +11,17 @@ public class GeodeticCurve implements Serializable
    /** Reverse azimuth (degrees from north). */
    private final double mReverseAzimuth;
 
-   /**
-    * Create a new GeodeticCurve.
-    * @param ellipsoidalDistance ellipsoidal distance in meters
-    * @param azimuth azimuth in degrees
-    * @param reverseAzimuth reverse azimuth in degrees
-    */
-   public GeodeticCurve(double ellipsoidalDistance, double azimuth, double reverseAzimuth)
+   def GeodeticCurve(double ellipsoidalDistance, double azimuth, double reverseAzimuth)
    {
-      mEllipsoidalDistance = ellipsoidalDistance;
+      this.ellipsoidalDistance = ellipsoidalDistance;
       mAzimuth = azimuth;
       mReverseAzimuth = reverseAzimuth;
    }
 
-   /**
-    * Get the ellipsoidal distance.
-    * @return ellipsoidal distance in meters
-    */
-   public double getEllipsoidalDistance()
-   {
-      return mEllipsoidalDistance;
-   }
+//   public double getEllipsoidalDistance()
+//   {
+//      return ellipsoidalDistance;
+//   }
 
    /**
     * Get the azimuth.
@@ -63,7 +51,7 @@ public class GeodeticCurve implements Serializable
       StringBuffer buffer = new StringBuffer();
 
       buffer.append("s=");
-      buffer.append(mEllipsoidalDistance);
+      buffer.append(ellipsoidalDistance);
       buffer.append(";a12=");
       buffer.append(mAzimuth);
       buffer.append(";a21=");
