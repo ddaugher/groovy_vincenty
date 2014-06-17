@@ -8,10 +8,10 @@ public class GeodeticMeasurementTests extends spock.lang.Specification {
 
     then:
     0.0 == geodeticMeasurement.reverseAzimuth
-    141.4213562373095 == geodeticMeasurement.getPointToPointDistance()
-    100.0 == geodeticMeasurement.getEllipsoidalDistance()
+    141.4213562373095 == geodeticMeasurement.pointToPoint
+    100.0 == geodeticMeasurement.ellipsoidalDistance
     1000.0 == geodeticMeasurement.azimuth
-    100.0 == geodeticMeasurement.getElevationChange()
+    100.0 == geodeticMeasurement.elevationChange
   }
 
   def "should return proper toString"() {
@@ -19,6 +19,6 @@ public class GeodeticMeasurementTests extends spock.lang.Specification {
     def geodeticMeasurement = new GeodeticMeasurement(new GeodeticCurve(100.0, 1000.0, 0.0), 100.0)
 
     then:
-    "s=100.0;a12=1000.0;a21=0.0;elev12=100.0;p2p=141.4213562373095" == geodeticMeasurement.toString()
+    "s=100.0;a12=1000.0;a21=0.0;elev12=100.0;p2p=141.4213562373095;" == geodeticMeasurement.toString()
   }
 }

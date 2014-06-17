@@ -16,32 +16,6 @@ class GeodeticCurve implements Serializable {
     this.reverseAzimuth = reverseAzimuth;
   }
 
-//   public double getEllipsoidalDistance()
-//   {
-//      return ellipsoidalDistance;
-//   }
-
-  /**
-   * Get the azimuth.
-   * @return azimuth in degrees
-   */
-//   public double azimuth
-//   {
-//      return azimuth;
-//   }
-
-  /**
-   * Get the reverse azimuth.
-   * @return reverse azimuth in degrees
-   */
-//  public double reverseAzimuth {
-//    return reverseAzimuth;
-//  }
-
-  /**
-   * Get curve as a string.
-   * @return
-   */
   @Override
   public String toString() {
     StringBuffer buffer = new StringBuffer();

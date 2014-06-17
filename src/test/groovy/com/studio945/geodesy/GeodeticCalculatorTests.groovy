@@ -40,7 +40,7 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     -4301.0 == geoMeasurement.getElevationChange().round(8)
 
     then: "the point to point distance should be correct"
-    1521788.826 == geoMeasurement.getPointToPointDistance().round(3)
+    1521788.826 == geoMeasurement.pointToPoint.round(3)
 
     then: "the ellipsoidal distance should be correct"
     1521782.748 == geoMeasurement.ellipsoidalDistance.round(3)
