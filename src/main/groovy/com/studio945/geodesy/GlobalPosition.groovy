@@ -92,27 +92,16 @@ public class GlobalPosition extends GlobalCoordinates
       return retval;
    }
 
-   /**
-    * Get a hash code for this position.
-    * 
-    * @return
-    */
    @Override
    public int hashCode()
    {
       int hash = Object.hashCode();
 
-      if (mElevation != 0) hash *= (int) mElevation;
+      if (mElevation != 0.0) hash *= (int) mElevation;
 
       return hash;
    }
 
-   /**
-    * Compare this position to another object for equality.
-    * 
-    * @param other
-    * @return
-    */
    @Override
    public boolean equals(Object obj)
    {
@@ -131,7 +120,7 @@ public class GlobalPosition extends GlobalCoordinates
    {
       StringBuffer buffer = new StringBuffer();
 
-      buffer.append(Object.toString());
+      buffer.append(super.toString());
       buffer.append("elevation=");
       buffer.append(Double.toString(mElevation));
       buffer.append("m");

@@ -5,7 +5,7 @@ package com.studio945.geodesy
  * latitude is southern hemisphere. Negative longitude is western hemisphere.
  * </p>
  * <p>
- * Any angle may be specified for longtiude and latitude, but all angles will be
+ * Any angle may be specified for longitude and latitude, but all angles will be
  * canonicalized such that:
  * </p>
  *
