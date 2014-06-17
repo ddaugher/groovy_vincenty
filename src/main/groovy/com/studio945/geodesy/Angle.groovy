@@ -1,4 +1,4 @@
-package com.studio945.geodesy;
+package com.studio945.geodesy
 
 @Singleton
 class Angle
