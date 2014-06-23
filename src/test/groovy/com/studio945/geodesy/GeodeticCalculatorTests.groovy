@@ -144,9 +144,16 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     dest.getLongitude().round(8) == expected.getLongitude().round(8)
   }
 
+  def "should return twoPi"() {
+    when: "instantiate new GeodeticCalculator"
+    def g = new GeodeticCalculator()
+
+    then: "should be able to get twoPi constant"
+    6.283185307179586 == g.twoPi
+  }
 //  public void testConstructor() throws Throwable {
 //    GeodeticCalculator geodeticCalculator = new GeodeticCalculator();
-//    assertEquals("geodeticCalculator.TwoPi", 6.283185307179586, ((Number) getPrivateField(geodeticCalculator, "TwoPi")).doubleValue(), 1.0E-6);
+//    assertEquals("geodeticCalculator.twoPi", 6.283185307179586, ((Number) getPrivateField(geodeticCalculator, "twoPi")).doubleValue(), 1.0E-6);
 //  }
 //
 //  public void testCalculateEndingGlobalCoordinates() throws Throwable {

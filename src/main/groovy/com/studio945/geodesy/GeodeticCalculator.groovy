@@ -1,12 +1,3 @@
-/* Geodesy by Mike Gavaghan
- * 
- * http://www.gavaghan.org/blog/free-source-code/geodesy-library-vincentys-formula/
- * 
- * This code may be freely used and modified on any personal or professional
- * project.  It comes with no warranty.
- *
- * BitCoin tips graciously accepted at 1FB63FYQMy7hpC2ANVhZ5mSgAZEtY1aVLf
- */
 package com.studio945.geodesy
 /**
  * <p>
@@ -20,7 +11,7 @@ package com.studio945.geodesy
  */
 public class GeodeticCalculator
 {
-   private final double TwoPi = 2.0 * Math.PI;
+   def final double twoPi = 2.0 * Math.PI;
 
    /**
     * Calculate the destination and final bearing after traveling a specified
@@ -305,12 +296,12 @@ public class GeodeticCalculator
 
          // eq. 20
          radians = Math.atan2(cosU2 * Math.sin(lambda), (cosU1sinU2 - sinU1cosU2 * Math.cos(lambda)));
-         if (radians < 0.0) radians += TwoPi;
+         if (radians < 0.0) radians += twoPi;
          alpha1 = Angle.toDegrees(radians);
 
          // eq. 21
          radians = Math.atan2(cosU1 * Math.sin(lambda), (-sinU1cosU2 + cosU1sinU2 * Math.cos(lambda))) + Math.PI;
-         if (radians < 0.0) radians += TwoPi;
+         if (radians < 0.0) radians += twoPi;
          alpha2 = Angle.toDegrees(radians);
       }
 
