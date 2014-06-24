@@ -127,7 +127,7 @@ public class Example
 		double elevChangeFeet;
 
 		geoMeasurement = geoCalc.calculateGeodeticMeasurement(reference, pikesPeak, alcatrazIsland);
-		p2pKilometers = geoMeasurement.getPointToPointDistance() / 1000.0;
+		p2pKilometers = geoMeasurement.getPointToPoint() / 1000.0;
 		p2pMiles = p2pKilometers * 0.621371192;
 		elevChangeMeters = geoMeasurement.getElevationChange();
 		elevChangeFeet = elevChangeMeters * 3.2808399;
