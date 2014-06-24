@@ -151,57 +151,17 @@ public class GeodeticCalculatorTests extends spock.lang.Specification {
     then: "should be able to get twoPi constant"
     6.283185307179586 == g.twoPi
   }
-//  public void testConstructor() throws Throwable {
-//    GeodeticCalculator geodeticCalculator = new GeodeticCalculator();
-//    assertEquals("geodeticCalculator.twoPi", 6.283185307179586, ((Number) getPrivateField(geodeticCalculator, "twoPi")).doubleValue(), 1.0E-6);
-//  }
-//
-//  public void testCalculateEndingGlobalCoordinates() throws Throwable {
-//    GeodeticCalculator geodeticCalculator = new GeodeticCalculator();
-//    GlobalCoordinates start = GlobalCoordinatesTestHelper.createEquatorGreenwich();
-//    Ellipsoid ellipsoid = EllipsoidTestHelper.createSphere();
-//    Mockingbird.enterRecordingMode();
-//    Mockingbird.setReturnValue(Angle.toRadians(100.0), 0.0);
-//    Mockingbird.setReturnValue(true, Math.class, "tan", "(double)double", new Object[] {new Double(0.0)}, new Double(0.0), 1);
-//    Mockingbird.setReturnValue(true, Math.class, "atan2", "(double,double)double", new Object[] {new Double(0.0), new Double(0.9984971498638638)}, new Double(0.0), 1);
-//    Mockingbird.setReturnValue(true, Math.class, "abs", "(double)double", new Object[] {new Double(0.0)}, new Double(0.0), 1);
-//    Mockingbird.enterTestMode(GeodeticCalculator.class);
-//    GlobalCoordinates result = geodeticCalculator.calculateEndingGlobalCoordinates(ellipsoid, start, 100.0, 1000.0, (double[]) null);
-//    assertEquals("result.getLatitude()", 0.008993216059195674, result.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testCalculateEndingGlobalCoordinates1() throws Throwable {
-//    GlobalCoordinates result = new GeodeticCalculator().calculateEndingGlobalCoordinates(EllipsoidTestHelper.createGRS80(), GlobalCoordinatesTestHelper.createEquatorGreenwich(), 100.0, 1000.0, (double[]) null);
-//    assertEquals("result.getLatitude()", -0.0015704211100455723, result.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testCalculateEndingGlobalCoordinates2() throws Throwable {
-//    GeodeticCalculator geodeticCalculator = new GeodeticCalculator();
-//    Ellipsoid ellipsoid = EllipsoidTestHelper.createGRS80();
-//    double[] endBearing = new double[4];
-//    GlobalCoordinates start = GlobalCoordinatesTestHelper.createEquatorGreenwich();
-//    Mockingbird.enterRecordingMode();
-//    Mockingbird.setReturnValue(Angle.toRadians(100.0), 0.0);
-//    Mockingbird.setReturnValue(true, Math.class, "tan", "(double)double", new Object[] {new Double(0.0)}, new Double(0.0), 1);
-//    Mockingbird.setReturnValue(true, Math.class, "atan2", "(double,double)double", new Object[] {new Double(0.0), new Double(-0.6156614753256583)}, new Double(3.141592653589793), 1);
-//    Mockingbird.enterTestMode(GeodeticCalculator.class);
-//    GlobalCoordinates result = geodeticCalculator.calculateEndingGlobalCoordinates(ellipsoid, start, 100.0, 1000.0, endBearing);
-//    assertEquals("result.getLatitude()", 0.00904369477004252, result.getLatitude(), 1.0E-6);
-//  }
-//
-//  public void testCalculateEndingGlobalCoordinates3() throws Throwable {
-//    GeodeticCalculator geodeticCalculator = new GeodeticCalculator();
-//    double[] endBearing = new double[0];
-//    Ellipsoid ellipsoid = EllipsoidTestHelper.createSphere();
-//    GlobalCoordinates start = GlobalCoordinatesTestHelper.createEquatorGreenwich();
-//    Mockingbird.enterRecordingMode();
-//    Mockingbird.setReturnValue(Angle.toRadians(100.0), 0.02085003381585247);
-//    Mockingbird.setReturnValue(true, Math.class, "tan", "(double)double", new Object[] {new Double(0.02085003381585247)}, new Double(0.02085305567739928), 1);
-//    Mockingbird.enterTestMode(GeodeticCalculator.class);
-//    GlobalCoordinates result = geodeticCalculator.calculateEndingGlobalCoordinates(ellipsoid, start, 100.0, 1000.0, endBearing);
-//    assertEquals("result.getLatitude()", 0.008991261346949386, result.getLatitude(), 1.0E-6);
-//  }
-//
+
+  def "should return proper ending coordinates"() {
+   when: "instantiate new Geodetic Calculator"
+    def g = new GeodeticCalculator()
+
+    then: "calculate ending global coordinate"
+    def result = g.calculateEndingGlobalCoordinates(Ellipsoid.GRS80, GlobalCoordinates.createEquatorGreenwich(), 100.0, 1000.0, null)
+
+    expect: "resulting latitude should be correct"
+    -0.0015704211100455723 == result.latitude
+  }
 //  public void testCalculateEndingGlobalCoordinates4() throws Throwable {
 //    double[] doubles = new double[1];
 //    GlobalCoordinates result = new GeodeticCalculator().calculateEndingGlobalCoordinates(EllipsoidTestHelper.createGRS80(), GlobalCoordinatesTestHelper.createEquatorGreenwich(), 100.0, 1000.0, doubles);
